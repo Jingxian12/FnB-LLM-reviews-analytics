@@ -57,7 +57,7 @@ else:
 # 3. DASHBOARD HEADER & KPI CARDS
 # ==========================================
 st.title("📊 F&B Customer Complaints Analytics Dashboard")
-st.markdown(f"Showing data for **{selected_brand}** — *{selected_branch}*")
+st.markdown(f"Showing data for **{selected_brand}** — *{selected_city}*")
 st.write("---")
 
 total_reviews = len(final_df)
