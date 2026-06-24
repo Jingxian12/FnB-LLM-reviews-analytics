@@ -50,7 +50,7 @@ else:
 if selected_city == "All Cities":
     final_df = filtered_df_step
 else:
-    # If a specific brand AND city are chosen, lock them down together!
+    # If a specific brand AND city are chosen
     final_df = filtered_df_step[filtered_df_step['city'] == selected_city]
 
 # ==========================================
