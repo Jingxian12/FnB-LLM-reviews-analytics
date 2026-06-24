@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import ast
 import plotly.express as px
 
 # Set page configuration to wide layout
