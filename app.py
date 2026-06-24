@@ -53,17 +53,23 @@ st.markdown(f"Showing data for **{selected_brand}** — *{selected_branch}*")
 st.write("---")
 
 total_reviews = len(final_df)
-no_complaint_count = final_df['no_specific_complaint_detected'].sum()
-complaint_free_pct = (no_complaint_count / total_reviews * 100) if total_reviews > 0 else 0
+general_complaint_count = final_df['no_specific_complaint_detected'].sum()
 
-# Display Top KPIs
+# Calculate what percentage of complaints are general/unclassified
+general_pct = (general_complaint_count / total_reviews * 100) if total_reviews > 0 else 0
+
+# Calculate categorized complaints (Reviews that actually hit your operational buckets)
+categorized_complaint_count = total_reviews - general_complaint_count
+categorized_pct = (categorized_complaint_count / total_reviews * 100) if total_reviews > 0 else 0
+
+# 📊 Display Top KPIs (Accurate for a Negative-Only Dataset)
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.metric("Total Reviews Evaluated", f"{total_reviews:,}")
+    st.metric("Total Negative Reviews", f"{total_reviews:,}")
 with col2:
-    st.metric("Complaint-Free Reviews (Clean)", f"{no_complaint_count:,}")
+    st.metric("Actionable Operational Complaints", f"{categorized_complaint_count:,}", f"{categorized_pct:.1f}% of total")
 with col3:
-    st.metric("Customer Satisfaction Rate", f"{complaint_free_pct:.1f}%")
+    st.metric("Vague / General Complaints", f"{general_complaint_count:,}", f"{general_pct:.1f}% of total", delta_color="inverse")
 
 st.write("---")
 
