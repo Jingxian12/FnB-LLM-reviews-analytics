@@ -12,13 +12,7 @@ st.set_page_config(page_title="F&B Operation Dashboard", layout="wide")
 @st.cache_data # Caches data so it doesn't reload on every click
 def load_data():
     # Load your newest 21-column CSV
-    df = pd.read_csv("datasets/final_df_llm.csv", encoding="utf-8-sig", on_bad_lines='skip')
-    
-    # CRUCIAL: Convert string representations of lists back to real Python lists
-    issue_columns = [col for col in df.columns if col.endswith('_issues')]
-    for col in issue_columns:
-        df[col] = df[col].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else x)
-        
+    df = pd.read_csv("datasets/final_df_llm.csv", encoding="utf-8-sig", on_bad_lines='skip')       
     return df
 
 try:
