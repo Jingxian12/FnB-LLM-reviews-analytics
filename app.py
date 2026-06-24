@@ -35,7 +35,7 @@ if selected_brand == "All Brands":
     city_options = list(df['city'].unique())
 else:
     # Only show cities that have branches for this specific brand
-    city_options = list(df[df['brand'] == selected_brand]['city'].unique())]
+    city_options = list(df[df['brand'] == selected_brand]['city'].unique())
 
 city_list = ["All Cities"] + city_options
 selected_city = st.sidebar.selectbox("Select City / Region", city_list)
