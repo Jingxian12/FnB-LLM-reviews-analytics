@@ -10,7 +10,7 @@ st.set_page_config(page_title="F&B Operation Dashboard", layout="wide")
 # ==========================================
 @st.cache_data # Caches data so it doesn't reload on every click
 def load_data():
-    # Load your newest 21-column CSV
+    # Load dataset from github
     df = pd.read_csv("datasets/final_df_llm.csv", encoding="utf-8-sig", on_bad_lines='skip')       
     return df
 
@@ -31,18 +31,27 @@ selected_brand = st.sidebar.selectbox("Select Brand", brand_list)
 
 # Dynamically filter branch list based on selected brand
 if selected_brand == "All Brands":
+    # Show all 5 standardized cities
+    city_options = list(df['city'].unique())
+else:
+    # Only show cities that have branches for this specific brand
+    city_options = list(df[df['brand'] == selected_brand]['city'].unique())]
+
+city_list = ["All Cities"] + city_options
+selected_city = st.sidebar.selectbox("Select City / Region", city_list)
+
+# Filter by Brand
+if selected_brand == "All Brands":
     filtered_df_step = df
 else:
     filtered_df_step = df[df['brand'] == selected_brand]
-
-branch_list = ["All Branches"] + list(filtered_df_step['branch_name'].unique())
-selected_branch = st.sidebar.selectbox("Select Branch", branch_list)
-
-# Final Dataset based on selections
-if selected_branch == "All Branches":
+    
+# Filter by City
+if selected_city == "All Cities":
     final_df = filtered_df_step
 else:
-    final_df = filtered_df_step[filtered_df_step['branch_name'] == selected_branch]
+    # If a specific brand AND city are chosen, lock them down together!
+    final_df = filtered_df_step[filtered_df_step['city'] == selected_city]
 
 # ==========================================
 # 3. DASHBOARD HEADER & KPI CARDS
