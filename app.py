@@ -12,7 +12,7 @@ st.set_page_config(page_title="F&B Operation Dashboard", layout="wide")
 @st.cache_data # Caches data so it doesn't reload on every click
 def load_data():
     # Load your newest 21-column CSV
-    df = pd.read_csv("datasets/final_df_llm.csv", encoding="utf-8-sig")
+    df = pd.read_csv("datasets/final_df_llm.csv", encoding="utf-8-sig", on_bad_lines='skip')
     
     # CRUCIAL: Convert string representations of lists back to real Python lists
     issue_columns = [col for col in df.columns if col.endswith('_issues')]
@@ -24,7 +24,7 @@ def load_data():
 try:
     df = load_data()
 except Exception as e:
-    st.error(f"Could not load CSV file. Make sure it's in data/ground_truth_llm.csv. Error: {e}")
+    st.error(f"Could not load CSV file. Make sure it's in datasets/final_df_llm.csv. Error: {e}")
     st.stop()
 
 # ==========================================
