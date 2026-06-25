@@ -198,4 +198,19 @@ D) From Diagram 4 , we can see that  section provides transparency by displaying
 
 ## 11. Future Improvements
 
-* **Standardize Raw Text Data:** Currently, the system successfully distributes text into multiple labels. The next step is to clean and standardize the raw text data into consistent, category-based formats for better analysis.
+**Standardization of Complaint Issues**
+
+Currently, the system is capable of assigning multiple labels to customer reviews using Gemini 2.5 Flash. However, the extracted complaints within each label remain in free-text form and may vary in wording despite referring to the same underlying issue.
+
+For example:
+- "Food was cold"
+- "Burger not hot"
+- "Fries arrived cold"
+
+All represent a similar complaint (Food Temperatues) but are expressed differently.
+
+Future work will focus on developing a complaint standardization pipeline to normalize semantically similar feedback into predefined issue categories. This will enable:
+- More accurate aggregation of recurring customer complaints
+- Better trend analysis across brands and locations
+- Easier identification of root causes
+- More actionable business insights
