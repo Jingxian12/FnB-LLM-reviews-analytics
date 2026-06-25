@@ -173,7 +173,7 @@ else:
             height=450,  # Give extra height to accommodate the bottom legend
             legend=dict(
                 orientation="h",     # 'h' means horizontal layout
-                yanchor="bottom",       # Anchors the legend from its top edge
+                yanchor="top",       # Anchors the legend from its top edge
                 y=-0.1,              # Moves it below the chart (negative value)
                 xanchor="center",    # Centers it horizontally
                 x=0.5
