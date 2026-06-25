@@ -63,7 +63,7 @@ selected_branch = final_df[final_df['city'] == selected_city]['branch_name'].ilo
 selected_address = final_df[final_df['city'] == selected_city]['address'].iloc[0]
 
 st.title("📊 F&B Customer Complaints Analytics Dashboard")
-Check if we are viewing a specific city/brand or everything globally
+# Check if we are viewing a specific city/brand or everything globally
 if selected_brand == "All Brands" or selected_city == "All Cities":
     # Global view text (No specific branch or address exists yet)
     st.markdown(f"Showing aggregated data for **{selected_brand}** — *{selected_city}*")
