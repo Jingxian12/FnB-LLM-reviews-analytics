@@ -76,6 +76,7 @@ with col1:
     st.metric("Total Negative Reviews", f"{total_reviews:,}")
 with col2:
     st.metric("Actionable Operational Complaints", f"{categorized_complaint_count:,}", f"{categorized_pct:.1f}% of total", delta_color="off")
+    st.caption(f"📝 {categorized_pct:.1f}% of total reviews")
 with col3:
     st.metric("Vague / General Complaints", f"{general_complaint_count:,}", f"{general_pct:.1f}% of total", delta_color="off")
 
