@@ -63,10 +63,10 @@ st.write("---")
 total_reviews = len(final_df)
 general_complaint_count = final_df['no_specific_complaint_detected'].sum()
 
-# Calculate what percentage of complaints are general/unclassified
+# Calculate percentage of complaints are general/unclassified (without giving a specific reason)
 general_pct = (general_complaint_count / total_reviews * 100) if total_reviews > 0 else 0
 
-# Calculate categorized complaints (Reviews that actually hit your operational buckets)
+# Calculate categorized complaints (Reviews that actually hit operational buckets)
 categorized_complaint_count = total_reviews - general_complaint_count
 categorized_pct = (categorized_complaint_count / total_reviews * 100) if total_reviews > 0 else 0
 
@@ -77,7 +77,7 @@ with col1:
 with col2:
     st.metric("Actionable Operational Complaints", f"{categorized_complaint_count:,}", f"{categorized_pct:.1f}% of total")
 with col3:
-    st.metric("Vague / General Complaints", f"{general_complaint_count:,}", f"{general_pct:.1f}% of total", delta_color="inverse")
+    st.metric("Vague / General Complaints", f"{general_complaint_count:,}", f"{general_pct:.1f}% of total")
 
 st.write("---")
 
