@@ -174,7 +174,7 @@ else:
             legend=dict(
                 orientation="h",     # 'h' means horizontal layout
                 yanchor="top",       # Anchors the legend from its top edge
-                y=-0.4,              # Moves it below the chart (negative value)
+                y=-0.1,              # Moves it below the chart (negative value)
                 xanchor="center",    # Centers it horizontally
                 x=0.5
             )
