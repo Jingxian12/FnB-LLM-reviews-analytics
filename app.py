@@ -86,10 +86,11 @@ st.write("---")
 # ==========================================
 # 4. MACRO BREAKDOWN (The Percentages Chart)
 # ==========================================
-st.subheader("⚠️ Prevalence of Operational Complaints")
+st.subheader("⚠️ Operational Complaint Breakdown")
 st.write("Percentage of total reviews where an issue was detected (Reviews can have multiple issues).")
 
 # List out our main classification categories
+# [key : Label]
 categories = {
     "food_quality": "Food Quality",
     "order_accuracy": "Order Accuracy",
@@ -109,17 +110,18 @@ for key, label in categories.items():
         pct = (total_detected / total_reviews * 100) if total_reviews > 0 else 0
         macro_data.append({"Category": label, "Key": key, "Percentage Failure (%)": round(pct, 1), "Count": total_detected})
 
-macro_df = pd.DataFrame(macro_data).sort_values(by="Percentage Failure (%)", ascending=True)
+# Sorted ascending because Plotly plots from bottom to top; this pushes the largest failures to the top 
+macro_df = pd.DataFrame(macro_data).sort_values(by="Percentage Failure (%)", ascending=True) 
 
 # Plot Horizontal Chart using Plotly
 fig_macro = px.bar(
     macro_df, 
     x="Percentage Failure (%)", 
     y="Category", 
-    orientation='h',
+    orientation='h', # horizontal
     text="Percentage Failure (%)",
     color="Percentage Failure (%)",
-    color_continuous_scale="Reds"
+    color_continuous_scale="Blues"
 )
 fig_macro.update_layout(showlegend=False, height=400)
 st.plotly_chart(fig_macro, use_container_width=True)
