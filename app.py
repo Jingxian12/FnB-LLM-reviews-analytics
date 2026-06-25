@@ -158,7 +158,7 @@ else:
     
     # Show Sub-Breakdown Pie/Donut Chart
     col_chart, col_table = st.columns([3, 2])
-    with col_chart:
+with col_chart:
         fig_micro = px.pie(
             issue_counts.head(5), # Show top 5 root causes
             values='Incident Count', 
@@ -167,24 +167,19 @@ else:
             hole=0.4
         )
         
-        # 🛠️ THE FIX: Lock the height and force long legend texts to wrap onto new lines
+        # 🛠️ THE FIX: Move legend below the chart horizontally and fix chart scaling
         fig_micro.update_layout(
-            height=400,  # Forces the chart layout size to be consistent
+            height=450,  # Give extra height to accommodate the bottom legend
             legend=dict(
-                itemwidth=40,  # Prevents text from pushing the chart
-                font=dict(size=11)
-            ),
-            # Injects a CSS rule into Plotly to break long words onto a new line
-            template="plotly_white"
+                orientation="h",     # 'h' means horizontal layout
+                yanchor="top",       # Anchors the legend from its top edge
+                y=-0.1,              # Moves it below the chart (negative value)
+                xanchor="center",    # Centers it horizontally
+                x=0.5
+            )
         )
-        # Wrap long text labels using a quick list comprehension for the chart display
-        fig_micro.for_each_trace(lambda t: t.update(labels=[
-            label if len(label) < 25 else label[:23] + "<br>" + label[23:] 
-            for label in t.labels
-        ]))
         
         st.plotly_chart(fig_micro, use_container_width=True)
-
     with col_table:
         st.write("📋 **Incident Frequencies**")
         # Added a matching height to the table container so everything looks balanced side-by-side
