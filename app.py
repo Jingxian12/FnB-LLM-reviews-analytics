@@ -75,9 +75,9 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.metric("Total Negative Reviews", f"{total_reviews:,}")
 with col2:
-    st.metric("Actionable Operational Complaints", f"{categorized_complaint_count:,}", f"{categorized_pct:.1f}% of total")
+    st.metric("Actionable Operational Complaints", f"{categorized_complaint_count:,}", f"{categorized_pct:.1f}% of total", delta_color="off")
 with col3:
-    st.metric("Vague / General Complaints", f"{general_complaint_count:,}", f"{general_pct:.1f}% of total")
+    st.metric("Vague / General Complaints", f"{general_complaint_count:,}", f"{general_pct:.1f}% of total", delta_color="off")
 
 st.write("---")
 
