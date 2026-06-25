@@ -155,27 +155,28 @@ else:
     issue_counts = exploded_issues[issues_col].value_counts().reset_index()
     issue_counts.columns = ['Specific Issue Extracted by LLM', 'Incident Count']
     
-    # Show Sub-Breakdown Pie/Donut Chart
-    col_chart, col_table = st.columns([3, 2])
+    # 1. Render the Donut Chart first (takes full width)
+    fig_micro = px.pie(
+        issue_counts.head(10), # Show top 10 root causes
+        values='Incident Count', 
+        names='Specific Issue Extracted by LLM',
+        title=f"Top Root Causes inside: {drill_choice_label}",
+        hole=0.4
+    )
     
-    with col_chart:
-        fig_micro = px.pie(
-            issue_counts.head(10), # Show top 10 root causes
-            values='Incident Count', 
-            names='Specific Issue Extracted by LLM',
-            title=f"Top Root Causes inside: {drill_choice_label}",
-            hole=0.4
-        )
-        st.plotly_chart(fig_micro, use_container_width=True)
-        
-    with col_table:
-        st.write("📋 **Incident Frequencies**")
-        st.dataframe(issue_counts, use_container_width=True, hide_index=True)
+    # Optional styling: This moves the legend below the pie chart so it never crushes it
+    fig_micro.update_layout(legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5))
+    
+    st.plotly_chart(fig_micro, use_container_width=True)
+    
+    # 2. Render the Data Table directly below the chart
+    st.write("📋 **Incident Frequencies**")
+    st.dataframe(issue_counts, use_container_width=True, hide_index=True)
 
     # ==========================================
     # 6. EVIDENCE AUDIT FEED
     # ==========================================
-    st.write("📝 **Verbatim Customer Evidence**")
+    st.write("📝 **Raw Customer Evidence**")
     st.write(f"Read the raw reviews categorized under **{drill_choice_label}**:")
     
     # Display raw clean text and what the LLM extracted out of it side-by-side
