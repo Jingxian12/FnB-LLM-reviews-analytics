@@ -79,7 +79,7 @@ with col2:
     st.caption(f"{categorized_pct:.1f}% of total reviews")
 with col3:
     st.metric("Vague / General Complaints", f"{general_complaint_count:,}")
-    st.caption(f"🔍 {general_pct:.1f}% of total reviews")
+    st.caption(f"{general_pct:.1f}% of total reviews")
 
 st.write("---")
 
