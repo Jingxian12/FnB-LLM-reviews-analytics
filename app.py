@@ -119,7 +119,7 @@ fig_macro = px.bar(
     x="Percentage Failure (%)", 
     y="Category", 
     orientation='h', # horizontal
-    # text="Percentage Failure (%)",
+    text="Percentage Failure (%)",
     color="Percentage Failure (%)",
     color_continuous_scale="Greens"
 )
