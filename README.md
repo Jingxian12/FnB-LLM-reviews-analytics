@@ -126,9 +126,9 @@ Each review was manually annotated according to the predefined label taxonomy, c
 ### B) Evaluation Metrics
 
 The following multi-label classification metrics were used:
-- F1-Score (Per Label) – Measures the balance between precision and recall for each individual label.
-- Hamming Loss – Measures the fraction of incorrectly predicted labels relative to the total number of labels.
-- Subset Accuracy – Measures the percentage of reviews where the entire set of predicted labels exactly matches the ground truth labels.
+- **F1-Score (Per Label)** – Measures the balance between precision and recall for each individual label.
+- **Hamming Loss** – Measures the fraction of incorrectly predicted labels relative to the total number of labels.
+- **Subset Accuracy** – Measures the percentage of reviews where the entire set of predicted labels exactly matches the ground truth labels.
 
 These metrics provide both label-level and instance-level evaluation of the model's performance.
 
@@ -153,3 +153,49 @@ The manually annotated dataset uses the following labels:
 
 <img width="815" height="66" alt="image" src="https://github.com/user-attachments/assets/dbd691e7-6b8f-4017-bcc8-c19e094aba0b" />
 
+
+## 9. How to use the app
+
+1) Start the application using Streamlit (https://fnb-llm-reviews-analytics.streamlit.app/)
+2) Select your desired filter options, such as:
+  - Brand (McDonald’s, KFC, Burger King)
+  - City (Subang Jaya, Puchong, Sepang, Cyberjaya, Setapak)
+  - Or a combination of both
+  
+3) The system will automatically generate an interactive dashboard based on your selection, including:
+  - Label distribution
+  - Review insights
+
+## 10. Output
+
+A) As shown in Diagram 1, users can choose a specific brand and city using the sidebar filter controls. Once selected, the dashboard instantly updates to display the corresponding analytics, breaking down total negative reviews into actionable and general complaints.
+
+
+<p align="center">
+<img width="955" height="489" alt="image" src="https://github.com/user-attachments/assets/1260d228-22f1-4c85-b223-060801c9cce3" />
+  <b> Diagram 1 </b>
+</p>
+
+B) From Diagram 2 , we can see that this section displays a horizontal bar chart that breaks down operational complaints by percentage. It allows users to clearly see which specific categories—such as staff professionalism, speed of service, or food quality—contribute most to customer dissatisfaction based on the selected brand's filters.
+
+<p align="center">
+<img width="955" height="489" alt="image" src="https://github.com/user-attachments/assets/40f5f21a-b512-4d08-b2c6-b02ac5b937cd" />
+ <b> Diagram 2 </b> 
+</p>
+
+C) As shown in Diagram 3, users can select a specific complaint category from the dropdown menu to investigate issues more deeply. The dashboard instantly displays a donut chart of the top root causes alongside a detailed list of incident frequencies, highlighting specific customer feedback extracted by the system.
+
+<p align="center">
+<img width="955" height="489" alt="image" src= "images/piechart.png" >
+ <b> Diagram 3 </b> 
+</p>
+
+D) From Diagram 4 , we can see that  section provides transparency by displaying a side-by-side table of raw customer feedback categorized under the selected issue type. It maps the original user-submitted review text directly to the key bullet points extracted by the system, allowing users to verify the exact context behind each logged complaint.
+<p align="center">
+<img width="955" height="489" alt="image" src= "images/rawcustomer.png" >
+ <b> Diagram 4 </b> 
+</p>
+
+## 11. Future Improvements
+
+* **Standardize Raw Text Data:** Currently, the system successfully distributes text into multiple labels. The next step is to clean and standardize the raw text data into consistent, category-based formats for better analysis.
