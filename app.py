@@ -184,7 +184,9 @@ else:
         st.write("📋 **Incident Frequencies**")
         # Added a matching height to the table container so everything looks balanced side-by-side
         st.dataframe(issue_counts, use_container_width=True, hide_index=True, height=400)
-        
+
+    st.write("---")
+    
     # ==========================================
     # 6. EVIDENCE AUDIT FEED
     # ==========================================
