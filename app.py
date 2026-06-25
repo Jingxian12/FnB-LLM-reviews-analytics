@@ -190,7 +190,7 @@ else:
     # ==========================================
     # 6. EVIDENCE AUDIT FEED
     # ==========================================
-    st.write("📝 **Raw Customer Evidence**")
+    st.subheader("📝 **Raw Customer Evidence**")
     st.write(f"Read the raw reviews categorized under **{drill_choice_label}**:")
     
     # Display raw clean text and what the LLM extracted out of it side-by-side
