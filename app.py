@@ -123,7 +123,7 @@ fig_macro = px.bar(
     color="Percentage Failure (%)",
     color_continuous_scale="Reds"
 )
-#fig_macro.update_layout(showlegend=False, height=400)
+fig_macro.update_layout(showlegend=False, height=400)
 # Makes the chart responsive, auto-scaling horizontally to perfectly fit any screen size.
 st.plotly_chart(fig_macro, use_container_width=True)
 
