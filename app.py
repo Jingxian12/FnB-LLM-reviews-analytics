@@ -63,11 +63,20 @@ selected_branch = final_df[final_df['city'] == selected_city]['branch_name'].ilo
 selected_address = final_df[final_df['city'] == selected_city]['address'].iloc[0]
 
 st.title("📊 F&B Customer Complaints Analytics Dashboard")
-st.markdown(
-    f"Showing data for **{selected_brand} {selected_branch}** — *{selected_city}*"
-    f"ℹ️", 
-    help=f"Full Address: {selected_address}"  # Displays on hover!
-)
+Check if we are viewing a specific city/brand or everything globally
+if selected_brand == "All Brands" or selected_city == "All Cities":
+    # Global view text (No specific branch or address exists yet)
+    st.markdown(f"Showing aggregated data for **{selected_brand}** — *{selected_city}*")
+else:
+    # 1. Safe to extract specific details because a single city is selected
+    selected_branch = final_df[final_df['city'] == selected_city]['branch_name'].iloc[0]
+    selected_address = final_df[final_df['city'] == selected_city]['address'].iloc[0]
+    
+    # 2. Show the detailed text with the hover tooltip
+    st.markdown(
+        f"Showing data for **{selected_brand} {selected_branch}** — *{selected_city}* ℹ️", 
+        help=f"Full Address: {selected_address}"
+    )
 st.write("---")
 
 total_reviews = len(final_df)
