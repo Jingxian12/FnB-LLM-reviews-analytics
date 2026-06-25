@@ -146,6 +146,7 @@ drill_df = final_df[final_df[detected_col] == 1]
 
 if len(drill_df) == 0:
     st.info(f"🎉 Awesome! There are zero recorded complaints regarding **{drill_choice_label}** for this selection.")
+
 else:
     # Explode the lists into individual item strings
     exploded_issues = drill_df.explode(issues_col)
@@ -155,23 +156,21 @@ else:
     issue_counts = exploded_issues[issues_col].value_counts().reset_index()
     issue_counts.columns = ['Specific Issue Extracted by LLM', 'Incident Count']
     
-    # 1. Render the Donut Chart first (takes full width)
-    fig_micro = px.pie(
-        issue_counts.head(10), # Show top 10 root causes
-        values='Incident Count', 
-        names='Specific Issue Extracted by LLM',
-        title=f"Top Root Causes inside: {drill_choice_label}",
-        hole=0.4
-    )
-    
-    # Optional styling: This moves the legend below the pie chart so it never crushes it
-    fig_micro.update_layout(legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5))
-    
-    st.plotly_chart(fig_micro, use_container_width=True)
-    
-    # 2. Render the Data Table directly below the chart
-    st.write("📋 **Incident Frequencies**")
-    st.dataframe(issue_counts, use_container_width=True, hide_index=True)
+    # Show Sub-Breakdown Pie/Donut Chart
+    col_chart, col_table = st.columns([3, 2])
+    with col_chart:
+        fig_micro = px.pie(
+            issue_counts.head(5), # Show top 5 root causes
+            values='Incident Count', 
+            names='Specific Issue Extracted by LLM',
+            title=f"Top Root Causes inside: {drill_choice_label}",
+            hole=0.4
+        )
+        st.plotly_chart(fig_micro, use_container_width=True)
+
+    with col_table:
+        st.write("📋 **Incident Frequencies**")
+        st.dataframe(issue_counts, use_container_width=True, hide_index=True)
 
     # ==========================================
     # 6. EVIDENCE AUDIT FEED
