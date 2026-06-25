@@ -158,7 +158,7 @@ else:
     
     # Show Sub-Breakdown Pie/Donut Chart
     col_chart, col_table = st.columns([3, 2])
-with col_chart:
+    with col_chart:
         fig_micro = px.pie(
             issue_counts.head(5), # Show top 5 root causes
             values='Incident Count', 
