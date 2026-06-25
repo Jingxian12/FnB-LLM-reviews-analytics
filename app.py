@@ -166,12 +166,30 @@ else:
             title=f"Top Root Causes inside: {drill_choice_label}",
             hole=0.4
         )
+        
+        # 🛠️ THE FIX: Lock the height and force long legend texts to wrap onto new lines
+        fig_micro.update_layout(
+            height=400,  # Forces the chart layout size to be consistent
+            legend=dict(
+                itemwidth=40,  # Prevents text from pushing the chart
+                font=dict(size=11)
+            ),
+            # Injects a CSS rule into Plotly to break long words onto a new line
+            template="plotly_white"
+        )
+        # Wrap long text labels using a quick list comprehension for the chart display
+        fig_micro.for_each_trace(lambda t: t.update(labels=[
+            label if len(label) < 25 else label[:23] + "<br>" + label[23:] 
+            for label in t.labels
+        ]))
+        
         st.plotly_chart(fig_micro, use_container_width=True)
 
     with col_table:
         st.write("📋 **Incident Frequencies**")
-        st.dataframe(issue_counts, use_container_width=True, hide_index=True)
-
+        # Added a matching height to the table container so everything looks balanced side-by-side
+        st.dataframe(issue_counts, use_container_width=True, hide_index=True, height=400)
+        
     # ==========================================
     # 6. EVIDENCE AUDIT FEED
     # ==========================================
