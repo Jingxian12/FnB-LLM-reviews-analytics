@@ -119,9 +119,9 @@ fig_macro = px.bar(
     x="Percentage Failure (%)", 
     y="Category", 
     orientation='h', # horizontal
-    text="Percentage Failure (%)",
-    color="Percentage Failure (%)",
-    color_continuous_scale="Blues"
+    #text="Percentage Failure (%)",
+    #color="Percentage Failure (%)",
+    color_continuous_scale="Greens"
 )
 fig_macro.update_layout(showlegend=False, height=400)
 st.plotly_chart(fig_macro, use_container_width=True)
