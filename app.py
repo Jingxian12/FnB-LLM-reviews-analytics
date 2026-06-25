@@ -57,7 +57,7 @@ else:
 selected_branch = final_df[final_df['city'] == selected_city]['branch_name'].iloc[0]
 
 # Address
-selected_adress = final_df[final_df['address'] == selected_city]['address'].iloc[0]
+selected_address = final_df[final_df['address'] == selected_city]['address'].iloc[0]
 
 # ==========================================
 # 3. DASHBOARD HEADER & KPI CARDS
