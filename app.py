@@ -136,7 +136,7 @@ st.subheader("🔍 Deep-Dive Root Cause Analyzer")
 # Let manager choose which bar they want to explode
 drill_choice_label = st.selectbox("Select a complaint category to view specific reasons:", list(categories.values()))
 # Find the technical key name for the chosen category label
-drill_key = [k for k, v in categories.items() if v == drill_choice_label][0]
+drill_key = [k for k, v in categories.items() if v == drill_choice_label][0] # [0] means that get the exact string inside python list
 
 detected_col = f"{drill_key}_detected"
 issues_col = f"{drill_key}_issues"
@@ -153,6 +153,8 @@ else:
     
     # Strip any empty spaces and drop null values if any
     exploded_issues[issues_col] = exploded_issues[issues_col].str.strip()
+    
+    #.reset_index() takes the text phrases out of the row index and pushes them into their own real data column, creating a clean two-column table.
     issue_counts = exploded_issues[issues_col].value_counts().reset_index()
     issue_counts.columns = ['Specific Issue Extracted by LLM', 'Incident Count']
     
@@ -167,7 +169,6 @@ else:
             hole=0.4
         )
         
-        # 🛠️ THE FIX: Move legend below the chart horizontally and fix chart scaling
         fig_micro.update_layout(
             height=450,  # Give extra height to accommodate the bottom legend
             legend=dict(
