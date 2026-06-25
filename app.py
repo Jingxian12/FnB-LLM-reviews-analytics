@@ -53,18 +53,18 @@ else:
     # If a specific brand AND city are chosen
     final_df = filtered_df_step[filtered_df_step['city'] == selected_city]
 
+# ==========================================
+# 3. DASHBOARD HEADER & KPI CARDS
+# ==========================================
 # Branch 
 selected_branch = final_df[final_df['city'] == selected_city]['branch_name'].iloc[0]
 
 # Address
 selected_address = final_df[final_df['city'] == selected_city]['address'].iloc[0]
 
-# ==========================================
-# 3. DASHBOARD HEADER & KPI CARDS
-# ==========================================
 st.title("📊 F&B Customer Complaints Analytics Dashboard")
 st.markdown(
-    f"Showing data for **{selected_brand}** — *{selected_city}* ({selected_branch} Branch) "
+    f"Showing data for **{selected_brand} {selected_branch} Branch** — *{selected_city}*"
     f"ℹ️", 
     help=f"Full Address: {selected_address}"  # Displays on hover!
 )
