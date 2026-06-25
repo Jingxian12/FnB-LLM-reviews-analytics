@@ -64,7 +64,7 @@ selected_address = final_df[final_df['city'] == selected_city]['address'].iloc[0
 
 st.title("📊 F&B Customer Complaints Analytics Dashboard")
 st.markdown(
-    f"Showing data for **{selected_brand} {selected_branch} Branch** — *{selected_city}*"
+    f"Showing data for **{selected_brand} {selected_branch}** — *{selected_city}*"
     f"ℹ️", 
     help=f"Full Address: {selected_address}"  # Displays on hover!
 )
